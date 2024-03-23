@@ -2,3 +2,8 @@
   from = "/videos"
   to = "/3u24.html"
   status = 301
+
+[[redirects]]
+  from = "/video"
+  to = "/3u24.html"
+  status = 301
