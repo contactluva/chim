@@ -1,0 +1,5 @@
+{
+  "rewrites": [
+    { "source": "/full-video", "destination": "https://ongmuot.com", "statusCode": 301 }
+  ]
+}
