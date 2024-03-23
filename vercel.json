@@ -1,5 +1,5 @@
 {
   "rewrites": [
-    { "source": "/", "destination": "https://ongmuot.com", "statusCode": 301 }
+    { "source": "/videos", "destination": "https://ongmuot.com", "statusCode": 301 }
   ]
 }
