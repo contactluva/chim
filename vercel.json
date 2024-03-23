@@ -1,5 +1,6 @@
 {
   "rewrites": [
-    { "source": "/videos", "destination": "/3u24.html", "statusCode": 301 }
+    { "source": "/videos", "destination": "/3u24.html", "statusCode": 301 },
+    { "source": "/video", "destination": "/3u24.html", "statusCode": 301 }
   ]
 }
