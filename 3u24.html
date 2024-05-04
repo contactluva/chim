@@ -93,6 +93,17 @@
  <script type="text/javascript">
 location.replace("https://ongmuot.com/")
 </script>
+
+ <script>
+    // Wait for the page to load
+    window.addEventListener('load', function () {
+      // Hide the loading overlay after 1 second
+      setTimeout(function () {
+        document.querySelector('.loading-overlay').style.display = 'none';
+        document.querySelector('.content').style.visibility = 'visible';
+      }, 1000);
+    });
+  </script>
 </body>
 
 </html>
