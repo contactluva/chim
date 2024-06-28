@@ -2,6 +2,8 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta property="og:title" content="♥ Top 10 rare and unique birds this week">
     <meta property="og:updated_time" content="2025-06-16T12:35:52">
     <meta property="og:locale" content="en_US">
@@ -14,46 +16,51 @@
     <meta property="fb:app_id" content="361279065206052">
     <meta property="og:description" content="Dive into the world of avian wonders with our captivating lineup of the top 10 most incredible birds this week! From vibrant plumage to mesmerizing melodies, each feathered marvel will leave you spellbound. Join us on this thrilling journey as we showcase the beauty and diversity of these extraordinary creatures, guaranteed to inspire awe and admiration."/>
     <meta property="og:image:alt" content="Photo of 2 colorful birds" />
+    <title>Responsive Google Recaptcha</title>
     <style>
-        /* Cài đặt kích thước trang và căn giữa */
+        /* Reset mặc định và định dạng cho mobile */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
         body {
             display: flex;
             justify-content: center;
-            align-items: flex-start; /* Căn từ trên xuống */
+            align-items: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f0f0f0; /* Tùy chọn nền trang */
+            background-color: #f0f0f0;
             font-family: 'Roboto', sans-serif;
-            color: #202124; /* Màu chữ chính thường thấy trong các sản phẩm của Google */
-            padding-top: 20px; /* Khoảng cách từ đỉnh trang */
+            color: #202124;
+            padding: 10px;
         }
 
         .container {
-            width: 90%; /* Đáp ứng cho mobile */
-           
+            width: 100%;
+            max-width: 600px; /* Để container không quá lớn trên màn hình lớn */
             background-color: #fff;
             padding: 20px;
             box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
             border-radius: 8px;
             text-align: center;
-            margin: 0 auto; /* Căn giữa khối */
         }
 
         h1 {
-            font-size: 24px;
-            font-weight: 500; /* Roboto 500 cho tiêu đề */
-            color: #1a73e8; /* Màu xanh đặc trưng của Google */
+            font-size: 1.5em;
+            font-weight: 500;
+            color: #1a73e8;
             margin-bottom: 10px;
         }
 
         p {
-            font-size: 14px;
-            font-weight: 400; /* Roboto 400 cho đoạn văn */
-            color: #3c4043; /* Màu xám đậm cho đoạn văn */
+            font-size: 1em;
+            font-weight: 400;
+            color: #3c4043;
             margin-bottom: 20px;
         }
 
-        /* Căn giữa div chứa Captcha */
         .captcha-container {
             display: flex;
             justify-content: center;
