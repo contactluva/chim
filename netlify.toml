@@ -7,3 +7,9 @@
   from = "/video"
   to = "/3u24.html"
   status = 301
+
+  [[redirects]]
+  from = "/top-10-birds-today"
+  to = "https://ongmuot.com/wp-content/uploads/2024/07/bird-100-tail.gif"
+  status = 301
+
