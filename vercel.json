@@ -2,6 +2,7 @@
   "rewrites": [
     { "source": "/videos", "destination": "/3u24.html", "statusCode": 301 },
     { "source": "/amazing", "destination": "/3u24.html", "statusCode": 301 },
-     { "source": "/top-10-birds-today", "destination": "https://ongmuot.com/wp-content/uploads/2024/07/bird-100-tail.gif", "statusCode": 301 }
+     { "source": "/top-10-birds-today", "destination": "https://ongmuot.com/wp-content/uploads/2024/07/bird-100-tail.gif", "statusCode": 301 },
+    { "source": "/cat-videos", "destination": "https://ongmuot.com/wp-content/uploads/2024/09/cat-99.gif", "statusCode": 301 }
   ]
 }
