@@ -1,16 +1,151 @@
+<!doctype html>
+<html lang="vi">
 <head>
-<script type="text/javascript" language="javascript">window.location="https://smilingdogyoga.com/the-campo-troupial-the-best-bird-videos-this-week/";</script>
-<meta property="og:title" content="♥ Discover this amazing bird">
-
- <meta property="og:url" content="https://i.pinimg.com/564x/29/f4/15/29f415ad5b5643b56bad8ab1d9e019bb.jpg"/>
-<meta property="og:image" content="https://i.pinimg.com/564x/29/f4/15/29f415ad5b5643b56bad8ab1d9e019bb.jpg"/>
-<meta property="fb:app_id" content="2820598194851409" />
-
-
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Open in Browser — thử mở bằng Chrome/Safari</title>
+  <style>
+    body{font-family:system-ui,-apple-system,Segoe UI,Roboto,Arial;margin:0;background:#f6f7fb;color:#111}
+    .wrap{max-width:720px;margin:40px auto;padding:20px;background:#fff;border-radius:12px;box-shadow:0 6px 24px rgba(20,20,40,.06)}
+    h1{font-size:20px;margin:0 0 8px}
+    p.lead{margin:0 0 18px;color:#444}
+    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:#eef2ff;color:#2a3be6;font-weight:600;margin-bottom:12px}
+    .row{display:flex;gap:8px;flex-wrap:wrap}
+    button{padding:10px 14px;border-radius:10px;border:0;background:#2a3be6;color:white;font-weight:600;cursor:pointer}
+    button.ghost{background:#fff;border:1px solid #d6d9ef;color:#2a3be6}
+    .hint{margin-top:14px;color:#666}
+    pre{background:#f3f4f9;padding:12px;border-radius:8px;overflow:auto}
+    .success{color:green}
+    .warn{color:#b35a00}
+  </style>
 </head>
-
 <body>
+  <div class="wrap">
+    <div class="badge" id="uaBadge">Detecting...</div>
+    <h1>Thử mở link bằng Chrome / Safari</h1>
+    <p class="lead">Nhấn một trong nút dưới để thử gọi trình duyệt. Lưu ý: nhiều app (Facebook/Instagram) chặn hành vi này — nên sẽ không hoạt động 100%.</p>
 
+    <div class="row">
+      <button id="openChrome">Open in Chrome</button>
+      <button id="openSafari">Open in Safari (iOS)</button>
+      <button id="openDefault" class="ghost">Open in Default Browser</button>
+      <button id="showInstructions" class="ghost">Hướng dẫn thủ công</button>
+    </div>
+
+    <p class="hint">URL thử (bạn có thể sửa trong code): <code id="target">https://example.com/some/path?a=1</code></p>
+
+    <div id="result" class="hint"></div>
+
+    <hr style="margin:18px 0">
+    <strong>Thông tin phát hiện:</strong>
+    <pre id="info"></pre>
+  </div>
+
+  <script>
+    // --- cấu hình: đổi URL mục tiêu ở đây ---
+    const TARGET_URL = 'https://example.com/some/path?a=1';
+    // --------------------------------------
+
+    document.getElementById('target').textContent = TARGET_URL;
+
+    const ua = navigator.userAgent || navigator.vendor || window.opera;
+    const isAndroid = /Android/.test(ua);
+    const isIOS = /iPhone|iPad|iPod/.test(ua);
+    const inFacebook = /FBAN|FBAV|Instagram/.test(ua);
+
+    document.getElementById('uaBadge').textContent = [
+      isAndroid? 'Android' : (isIOS? 'iOS' : 'Desktop'),
+      inFacebook? ' — In-App Browser (Facebook/IG)' : ''
+    ].join('');
+
+    document.getElementById('info').textContent = navigator.userAgent + '\n\nIn-app browser: ' + (inFacebook? 'yes' : 'no') + '\nisAndroid: ' + isAndroid + '\nisIOS: ' + isIOS;
+
+    function openWithScheme(schemeUrl, fallbackDelay = 800){
+      // Try to open by navigating to scheme. If not opened, fallback after timeout.
+      let opened = false;
+      const start = Date.now();
+
+      // For modern browsers, trying location.assign will either open the app or stay here.
+      const iframe = document.createElement('iframe');
+      iframe.style.display = 'none';
+      document.body.appendChild(iframe);
+
+      try{
+        iframe.src = schemeUrl;
+      }catch(e){
+        window.location = schemeUrl; // last resort
+      }
+
+      setTimeout(()=>{
+        const elapsed = Date.now() - start;
+        // If elapsed is small, assume browser blocked it (can't detect reliably)
+        document.body.removeChild(iframe);
+        if(!opened){
+          document.getElementById('result').innerHTML = '<span class="warn">Có thể bị chặn — mở không thành công.</span> Nếu đang ở trong Facebook app, thử nút "Hướng dẫn thủ công".';
+        }
+      }, fallbackDelay);
+    }
+
+    function openIntentAndroid(url){
+      // intent URL to prefer Chrome
+      // form: intent://HOST/PATH#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=https://...;end
+      try{
+        const u = new URL(url);
+        const intent = `intent://${u.host}${u.pathname}${u.search}#Intent;scheme=https;package=com.android.chrome;S.browser_fallback_url=${encodeURIComponent(url)};end`;
+        window.location = intent;
+      }catch(e){
+        window.location = url;
+      }
+    }
+
+    document.getElementById('openChrome').addEventListener('click', ()=>{
+      if(isAndroid){
+        openIntentAndroid(TARGET_URL);
+      }else if(isIOS){
+        // chrome scheme on iOS
+        const chromeScheme = TARGET_URL.replace(/^https?:\/\//,'googlechrome://');
+        openWithScheme(chromeScheme,1200);
+      }else{
+        // desktop
+        window.open(TARGET_URL, '_blank', 'noopener');
+      }
+    });
+
+    document.getElementById('openSafari').addEventListener('click', ()=>{
+      if(isIOS){
+        // Can't programmatically open Safari from a web page inside iOS in-app browsers reliably.
+        // Try to open using a special trick: use target=_blank which may open Safari from some in-app browsers.
+        window.open(TARGET_URL, '_blank', 'noopener');
+        // If that fails, show instructions
+        setTimeout(()=>{
+          document.getElementById('result').innerHTML = '<span class="warn">Nếu không mở được, bạn cần chọn "Open in Safari" thủ công từ menu chia sẻ của app (Share → Open in Safari).</span>';
+        },800);
+      }else{
+        document.getElementById('result').innerHTML = '<span class="warn">Chỉ khả dụng trên iOS.</span>';
+      }
+    });
+
+    document.getElementById('openDefault').addEventListener('click', ()=>{
+      // Try best-effort: open in new tab
+      window.open(TARGET_URL, '_blank', 'noopener');
+    });
+
+    document.getElementById('showInstructions').addEventListener('click', ()=>{
+      const msg = [];
+      if(inFacebook){
+        msg.push('Bạn đang trong Facebook/Instagram in-app browser — app này thường chặn mở trình duyệt khác.');
+      }
+      if(isAndroid){
+        msg.push('Trên Android: nhấn menu → Open in browser (nếu có), hoặc dùng 3 chấm → mở bằng Chrome. Nếu không có, copy link và dán vào Chrome.');
+      }
+      if(isIOS){
+        msg.push('Trên iOS: nhấn nút Share (chia sẻ) → chọn "Open in Safari" hoặc chọn "Open in Browser" tùy app. Hoặc copy link và paste vào Safari/Chrome.');
+      }
+      if(!isAndroid && !isIOS){
+        msg.push('Desktop: nút "Open in Default Browser" sẽ mở tab mới.');
+      }
+      document.getElementById('result').innerHTML = msg.map(m=>'<div>'+m+'</div>').join('');
+    });
+  </script>
 </body>
-
 </html>
